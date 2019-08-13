@@ -1,0 +1,29 @@
+
+<form #frm ="ngForm" (ngSubmit)=" addItem(frm)" *ngIf="!toggleForm">
+        <h2>Add Task</h2>
+        <div class="form-group">
+          <input type="text" ng-required="required" class="form-control" name="taskName" placeholder="Task Name" ngModel >
+        </div>
+        <button type="submit" name="button" class="btn btn-success" >Add Task</button>
+</form>
+
+<form #Updatefrm ="ngForm" (ngSubmit)=" updateItem(Updatefrm)" *ngIf="toggleForm">
+    <h2>Update Task</h2>
+    <div class="form-group">
+      <input type="text" class="form-control" name="taskName" [ngModel]="selectedTaskItem.taskName">
+    </div>
+    <button type="submit" name="button" class="btn btn-success" >Save</button>
+</form>
+<br><br>
+
+<table >
+    <h2>To Do List</h2>
+  <tr *ngFor="let item of taskItemList" class="">
+    <td>{{item.taskName}}</td>
+    <br><br>
+    <td> <button type="button" name="button" class="btn btn-primary" (click)="showEditForm(item)" [disabled]="toggleForm">Update</button></td>
+    <br><br>
+    <td> <button type="button" name="button" class="btn btn-danger" (click)="deleteItem(item._id)">Delete</button></td>
+  </tr>
+<table>
+
